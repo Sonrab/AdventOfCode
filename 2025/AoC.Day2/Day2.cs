@@ -4,7 +4,7 @@ using AoC.Shared;
 
 double Part1()
 {
-    var ranges = "AoC.Day2/input.txt".Read().Split(',').Select(r =>
+    var ranges = "AoC.Day2/*input.txt".Read().Split(',').Select(r =>
     {
         var split = r.Split('-');
         return (double.Parse(split[0]), double.Parse(split[1]));
@@ -28,7 +28,7 @@ double Part1()
 
 double Part2()
 {
-    var ranges = "AoC.Day2/input.txt".Read().Split(',').Select(r =>
+    var ranges = "AoC.Day2/*input.txt".Read().Split(',').Select(r =>
     {
         var split = r.Split('-');
         return (double.Parse(split[0]), double.Parse(split[1]));
