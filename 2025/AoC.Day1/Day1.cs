@@ -51,8 +51,6 @@ static int Part2()
     return points;
 }
 
-var p1 = Part1();
-var p2 = Part2();
+Console.WriteLine(Part1());
+Console.WriteLine(Part2());
 ; 
-
-
