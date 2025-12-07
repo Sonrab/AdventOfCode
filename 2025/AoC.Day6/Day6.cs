@@ -3,7 +3,7 @@ using AoC.Shared;
 
 static long Part1()
 {
-    var rows = "AoC.Day6/input.txt".Read().SplitLines()
+    var rows = "AoC.Day6/input.txt".ReadAllLines()
         .Select(row => row.Split(' ', StringSplitOptions.RemoveEmptyEntries).Select(v => v.Trim()).ToArray())
         .ToArray();
 
@@ -21,7 +21,7 @@ static long Part1()
 
 static long Part2()
 {
-    var rows = "AoC.Day6/input.txt".Read().SplitLines().ToArray();
+    var rows = "AoC.Day6/input.txt".ReadAllLines();
 
     List<string[]> problems = [];
     var tracker = 0;

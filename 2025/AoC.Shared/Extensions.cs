@@ -1,4 +1,5 @@
-﻿namespace AoC.Shared;
+﻿
+namespace AoC.Shared;
 
 public static class Extensions
 {
@@ -7,8 +8,10 @@ public static class Extensions
         var env_home = Environment.GetEnvironmentVariable("HOME");
         return File.ReadAllText($"{env_home}/Repositories/AdventOfCode/2025/{path}");
     }
-    public static string[] SplitLines(this string input)
+
+    public static string[] ReadAllLines(this string path)
     {
-        return GeneratedRegex.MatchLineBreak().Split(input);
+        var env_home = Environment.GetEnvironmentVariable("HOME");
+        return File.ReadAllLines($"{env_home}/Repositories/AdventOfCode/2025/{path}");
     }
 }

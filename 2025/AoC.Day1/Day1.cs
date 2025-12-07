@@ -3,7 +3,7 @@ using AoC.Shared;
 
 static int Part1()
 {
-    var rows = "AoC.Day1/input.txt".Read().SplitLines();
+    var rows = "AoC.Day1/input.txt".ReadAllLines();
     var (_, points) = rows.Aggregate((Dial: 50, DialPoints: 0),  (input, r) =>
     {
         var dialRaw = r[0] == 'L' ? input.Dial - int.Parse(r[1..]) : input.Dial + int.Parse(r[1..]);
@@ -24,7 +24,7 @@ static int Part1()
 
 static int Part2()
 {
-    var rows = "AoC.Day1/input.txt".Read().SplitLines();
+    var rows = "AoC.Day1/input.txt".ReadAllLines();
     var (_, points) = rows.Aggregate((Dial: 50, DialPoints: 0),  (input, r) =>
     {        
         var dialRaw = r[0] == 'L' ? input.Dial - int.Parse(r[1..]) : input.Dial + int.Parse(r[1..]);
