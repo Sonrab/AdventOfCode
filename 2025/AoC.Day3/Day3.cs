@@ -17,7 +17,7 @@ static long Part2()
 {
     var rows = "AoC.Day3/input.txt".ReadAllLines();
 
-    return rows.Select(row =>
+    return rows.Sum(row =>
     {
         var valuesWithIndex = row.Select((v, i) => (Value: (int)char.GetNumericValue(v), Index: i)).ToArray();
         var joltage = Enumerable.Range(0, 12).Reverse().Aggregate((Start: 0, Joltage: string.Empty), (input, skipLast) =>
@@ -27,7 +27,7 @@ static long Part2()
         }).Joltage;
 
         return long.Parse(joltage);
-    }).Sum();
+    });
 }
 
 Console.WriteLine(Part1());

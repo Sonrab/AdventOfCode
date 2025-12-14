@@ -36,7 +36,7 @@ static long Part2()
     }
     problems.Add([ ..rows.Select(row => row[tracker..]) ]); // postprocess på sista
 
-    return problems.Select(values =>
+    return problems.Sum(values =>
     {
         var symbol = values[^1][0];
         var max = values.MaxBy(s => s.Length)!.Length;
@@ -50,7 +50,7 @@ static long Part2()
             '*' => nums.Aggregate<long, long>(1, (p, n) => n * p),
             _ => throw new Exception()
         };
-    }).Sum();
+    });
 }
 Console.WriteLine(Part1());
 Console.WriteLine(Part2());
