@@ -23,19 +23,17 @@ static (long, long) Part1AndPart2()
     var youToOut = FindPaths("you", "out");
 
     // Finns inga vägar från dac till fft så det här är enda sekvensen som behöver kollas
-    var dacToOut = FindPaths("dac", "out");
-    var fftToDac = FindPaths("fft", "dac");
     var svrToFft = FindPaths("svr", "fft");
+    var fftToDac = FindPaths("fft", "dac");
+    var dacToOut = FindPaths("dac", "out");
 
     return (youToOut, svrToFft * fftToDac * dacToOut);
 
     long FindPaths(string start, string target)
     {
         var queue = new Queue<Node>([nodes[target]]);
-        var nodeValues = new Dictionary<string, List<NodeValue>>()
-        {
-            { target, [ new("Initializer", 1) ] }
-        };
+        var nodeValues = nodes.ToDictionary(n => n.Key, n => new NodeValue([]));
+        nodeValues[target].SourceNodes["Initalizer"] = 1;
 
         while(queue.Count > 0)
         {
@@ -43,15 +41,7 @@ static (long, long) Part1AndPart2()
 
             foreach(var nb in invertedNodes[node.Id])
             {
-                if(nodeValues.TryGetValue(nb.Id, out var val))
-                {
-                    val.RemoveAll(v => v.Id == node.Id);
-                    nodeValues[nb.Id].Add(new(node.Id, nodeValues[node.Id].Sum(v => v.Value)));
-                }
-                else
-                {
-                    nodeValues[nb.Id] = [new(node.Id, nodeValues[node.Id].Sum(v => v.Value))];
-                }
+                nodeValues[nb.Id].SourceNodes[node.Id] = nodeValues[node.Id].Value;
 
                 if(!queue.Contains(nb))
                 {
@@ -60,7 +50,7 @@ static (long, long) Part1AndPart2()
             }
         }
 
-        return nodeValues[start].Sum(v => v.Value);
+        return nodeValues[start].Value;
     }
 }
 
@@ -71,4 +61,7 @@ Console.WriteLine(part2);
 
 record Node(string Id, string[] Neighbours);
 
-record NodeValue(string Id, long Value);
+record NodeValue(Dictionary<string, long> SourceNodes)
+{
+    public long Value => SourceNodes.Sum(sn => sn.Value);
+};
