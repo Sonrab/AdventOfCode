@@ -30,7 +30,6 @@ static long Part2()
     while(ranges.FirstOrDefault() is { } range)
     {
         var overlapping = ranges.Where(range.IsOverlapping).Append(range).ToArray();
-
         ranges.RemoveWhere(r => overlapping.Contains(r));
 
         if(overlapping.Length == 1)
@@ -44,9 +43,10 @@ static long Part2()
                 End: overlapping.MaxBy(r => r.End)!.End));
         }
     }
-    var a = finishedRanges.OrderBy(fr => fr.Start).ThenBy(fr => fr.End).ToArray();
+
     return finishedRanges.Sum(r => r.NumberOfIds());
 }
+
 Console.WriteLine(Part1());
 Console.WriteLine(Part2());
 ;
