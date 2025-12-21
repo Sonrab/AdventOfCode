@@ -1,7 +1,4 @@
-﻿
-using Microsoft.VisualBasic;
-
-namespace AoC.Shared;
+﻿namespace AoC.Shared;
 
 public static class Extensions
 {

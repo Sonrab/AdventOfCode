@@ -49,7 +49,7 @@ static long Part2()
 
 Console.WriteLine(Part1());
 Console.WriteLine(Part2());
-;
+
 
 record IdRange(long Start, long End)
 {

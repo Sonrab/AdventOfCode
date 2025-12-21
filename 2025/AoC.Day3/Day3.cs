@@ -3,14 +3,14 @@
 static int Part1()
 {
     var rows = "AoC.Day3/input.txt".ReadAllLines();
-    return rows.Select(row =>
+    return rows.Sum(row =>
     {
         var valuesWithIndex = row.Select((v, i) => (Value: (int)char.GetNumericValue(v), Index: i)).ToArray();
         var first = valuesWithIndex[..^1].OrderByDescending(n => n.Value).ThenBy(n => n.Index).First();
         var second = valuesWithIndex[(first.Index+1)..].OrderByDescending(n => n.Value).ThenBy(n => n.Index).First();
 
         return int.Parse($"{first.Value}{second.Value}");
-    }).Sum();
+    });
 }
 
 static long Part2()
